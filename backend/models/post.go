@@ -4,7 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
-type Book struct {
+type Post struct {
 	gorm.Model
 	Post  string `json:"post"`
 }

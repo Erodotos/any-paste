@@ -6,9 +6,8 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/erodotos/any-paste/config"
-	"github.com/erodotos/any-paste/models"
-
+	"backend/config"
+	"backend/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -36,5 +35,5 @@ func init() {
 }
 
 func autoMigrate() {
-	DB.AutoMigrate(&models.Book{})
+	DB.AutoMigrate(&models.Post{})
 }

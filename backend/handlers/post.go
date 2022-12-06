@@ -1,29 +1,30 @@
 package handlers
 
 import (
-	"github.com/erodotos/any-paste/dal"
-	"github.com/erodotos/any-paste/models"
+	"backend/dal"
+	"backend/models"
 	"github.com/gofiber/fiber/v2"
 )
 
 func CreatePost(c *fiber.Ctx) error {
-	book := new(models.Book)
+	post := new(models.Post)
 
-	if err := c.BodyParser(book); err != nil {
+
+	if err := c.BodyParser(post); err != nil {
 		return c.Status(400).JSON(fiber.Map{"data": nil, "error": err.Error()})
 	}
 
-	if err := dal.CreateBook(book); err != nil {
+	if err := dal.CreatePost(post); err != nil {
 		return c.Status(500).JSON(fiber.Map{"data": nil, "error": err.Error()})
 	}
 
-	return c.Status(201).JSON(fiber.Map{"data": "success", "error": nil})
+	return c.Status(201).JSON(fiber.Map{"data": post.ID, "error": nil})
 }
 
 func ReadPost(c *fiber.Ctx) error {
-	book_id := c.Params("id")
+	postId := c.Params("id")
 
-	err, result := dal.ReadBook(book_id)
+	result, err := dal.ReadPost(postId)
 
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{"data": nil, "error": err.Error()})
