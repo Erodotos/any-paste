@@ -17,6 +17,16 @@ services:
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
+  api:
+    container_name: api
+    image: api:latest
+    restart: always
+    networks:
+      - backend
+    ports:
+      - 3000:3000
+    depends_on:
+      - database
 
 
 networks:
