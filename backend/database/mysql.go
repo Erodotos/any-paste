@@ -6,7 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	"backend/config"
+	// "backend/config"
 	"backend/models"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
