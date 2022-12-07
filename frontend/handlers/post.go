@@ -5,11 +5,11 @@ import (
 )
 
 func Home(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{
-		"Title": "Hello, World!",
-	})
+	return c.Render("index", fiber.Map{})
 }
 
 func ReadPost(c *fiber.Ctx) error {
-	return nil
+	return c.Render("post", fiber.Map{
+		"Post": "Hello, World!",
+	})
 }

@@ -7,5 +7,5 @@ import (
 
 func SetUpRoutes(app *fiber.App) {
 	app.Get("/", handlers.Home)
-	app.Get("/:id", handlers.ReadPost)
+	app.Get("/post/:id", handlers.ReadPost)
 }
