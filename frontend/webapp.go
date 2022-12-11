@@ -5,6 +5,7 @@ import (
 	"frontend/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
+	"github.com/gofiber/fiber/v2/middleware/logger"
 )
 
 func main() {
@@ -13,6 +14,8 @@ func main() {
     app := fiber.New(fiber.Config{
         Views: htmlEngine,
     })
+
+	app.Use(logger.New())
 
 	routes.SetUpRoutes(app)
 

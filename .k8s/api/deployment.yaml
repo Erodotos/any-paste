@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  template:
+    metadata:
+      labels:
+        app: api
+    spec:
+      containers:
+        - image: erodotos/api:v1
+          name: api
+          env:
+            - name: DB_HOST
+              value: remotemysql.com
+            - name: DB_PORT
+              value: '3306'
+            - name: DB_USER
+              value: rLZ2yTVYn2
+            - name: DB_PASSWORD
+              value: sprfYib8M4
+            - name: DB_NAME
+              value: rLZ2yTVYn2
+          ports:
+            - containerPort: 3000
+              name: api
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi

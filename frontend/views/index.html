@@ -19,7 +19,7 @@
         <hr>
 
         <div class="row mt-5">
-            <textarea rows="10" placeholder="You are just a paste away" class="form-control"></textarea>
+            <textarea id="postData" rows="10" placeholder="You are just a paste away" class="form-control"></textarea>
             <button id="postButton" type="button" class="btn btn-success mt-3">Post</button>
         </div>
 
@@ -27,12 +27,26 @@
 
     <script>
         $("#postButton").click(function(){
-            $.ajax({
-                type: "POST",
-                url: 'localhost:3000/api/post',
-                data: {"post": "1234"},
-            });
+          const baseURL = '/post';
+          let data = $("#postData").val()
+          postData(baseURL, {post: data})
+          .then((data) => {
+            console.log(data);
+          });
         });
+        
+        async function postData(url = '', data = {}) {
+          // Default options are marked with *
+          console.log(url, data)
+          const response = await fetch(url, {
+            method: 'POST', 
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data),
+          });
+          return response.json(); // parses JSON response into native JavaScript objects
+        }
     </script>
 
 
