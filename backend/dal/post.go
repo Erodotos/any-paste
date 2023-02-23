@@ -3,10 +3,11 @@ package dal
 import (
 	"backend/database"
 	"backend/models"
+	"fmt"
 )
 
 func CreatePost(post *models.Post) error {
-	
+
 	if result := database.DB.Create(post); result.Error != nil {
 		return result.Error
 	}
@@ -15,11 +16,13 @@ func CreatePost(post *models.Post) error {
 }
 
 func ReadPost(postId string) (*models.Post, error) {
-	post:= new(models.Post)
+	post := new(models.Post)
 
 	if result := database.DB.First(&post, postId); result.Error != nil {
-		return  nil, result.Error
+		return nil, result.Error
 	}
 
-	return post, nil 
+	fmt.Println(post)
+
+	return post, nil
 }

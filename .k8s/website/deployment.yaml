@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: web
+  name: website
 spec:
   selector:
     matchLabels:
-      app: web
+      app: website
   template:
     metadata:
       labels:
-        app: web
+        app: website
     spec:
       containers:
-        - image: erodotos/web:v1.3
-          name: web
+        - image: erodotos/web:v1.16
+          name: website
           env:
             - name: API_URL
-              value: https://api:3000/api/post
+              value: http://api:3000
           ports:
             - containerPort: 3001
-              name: web
+              name: website
           resources:
             requests:
               cpu: 100m

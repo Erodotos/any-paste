@@ -12,26 +12,26 @@ spec:
         app: api
     spec:
       containers:
-        - image: erodotos/api:v1
+        - image: erodotos/api:v1.6
           name: api
           env:
             - name: DB_HOST
-              value: remotemysql.com
+              value: mysql
             - name: DB_PORT
               value: '3306'
             - name: DB_USER
-              value: rLZ2yTVYn2
+              value: root
             - name: DB_PASSWORD
-              value: sprfYib8M4
+              value: password
             - name: DB_NAME
-              value: rLZ2yTVYn2
+              value: main
           ports:
             - containerPort: 3000
               name: api
           resources:
             requests:
-              cpu: 100m
-              memory: 128Mi
+              cpu: 1000m
+              memory: 800Mi
             limits:
-              cpu: 250m
-              memory: 256Mi
+              cpu: 1000m
+              memory: 800Mi

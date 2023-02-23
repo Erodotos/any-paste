@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: website
 spec:
-  type: LoadBalancer
   ports:
     - port: 3001
   selector:
-    app: web
+    app: website

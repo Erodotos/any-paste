@@ -3,12 +3,13 @@ package handlers
 import (
 	"backend/dal"
 	"backend/models"
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 )
 
 func CreatePost(c *fiber.Ctx) error {
 	post := new(models.Post)
-
 
 	if err := c.BodyParser(post); err != nil {
 		return c.Status(400).JSON(fiber.Map{"data": nil, "error": err.Error()})
@@ -24,11 +25,16 @@ func CreatePost(c *fiber.Ctx) error {
 func ReadPost(c *fiber.Ctx) error {
 	postId := c.Params("id")
 
+	fmt.Println(postId)
+
 	result, err := dal.ReadPost(postId)
 
 	if err != nil {
 		return c.Status(404).JSON(fiber.Map{"data": nil, "error": err.Error()})
 	}
 
-	return c.Status(200).JSON(fiber.Map{"data": result, "error": nil})
+	fmt.Println(result.Post)
+	fmt.Printf("%T", result.Post)
+
+	return c.Status(200).JSON("aloou")
 }
