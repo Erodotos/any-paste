@@ -1,10 +1,9 @@
 # any-paste: A showcase project using Gofiber and Kubernetes
 
 <p align="center">
-     <img src="https://gofiber.io/assets/images/logo.svg" align="left" width="50%">
-     <img src="https://avatars.githubusercontent.com/u/13629408?s=200&v=4" align="right" width="50%">
+     <img src="https://gofiber.io/assets/images/logo.svg" width="250">
+     <img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
 </p>
-
 
 
 ## Table of contents
