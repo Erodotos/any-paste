@@ -12,7 +12,7 @@ spec:
         app: api
     spec:
       containers:
-        - image: erodotos/api:v1.6
+        - image: erodotos/api:v2
           name: api
           env:
             - name: DB_HOST

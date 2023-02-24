@@ -3,7 +3,6 @@ package handlers
 import (
 	"backend/dal"
 	"backend/models"
-	"fmt"
 	"strconv"
 
 	"github.com/gofiber/fiber/v2"

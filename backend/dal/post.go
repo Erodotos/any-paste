@@ -3,7 +3,6 @@ package dal
 import (
 	"backend/database"
 	"backend/models"
-	"fmt"
 )
 
 func CreatePost(post *models.Post) error {
