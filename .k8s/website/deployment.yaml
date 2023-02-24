@@ -12,7 +12,7 @@ spec:
         app: website
     spec:
       containers:
-        - image: erodotos/web:v2
+        - image: erodotos/web:latest
           name: website
           env:
             - name: API_URL
