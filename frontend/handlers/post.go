@@ -8,6 +8,7 @@ import (
 	"frontend/models"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -23,7 +24,7 @@ func ReadPost(c *fiber.Ctx) error {
 	a := fiber.AcquireAgent()
 	req := a.Request()
 	req.Header.SetMethod(fiber.MethodGet)
-	req.SetRequestURI(fmt.Sprintf("%s%s%s", config.Config("API_URL"), "/api/post/", postId))
+	req.SetRequestURI(fmt.Sprintf("%s%s%s", os.Getenv("API_URL"), "/api/post/", postId))
 
 	if err := a.Parse(); err != nil {
 		panic(err)
@@ -61,7 +62,7 @@ func CreatePost(c *fiber.Ctx) error {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Post(fmt.Sprintf("%s%s", config.Config("API_URL"), "/api/post"), "application/json", bytes.NewBuffer(json_data))
+	resp, err := http.Post(fmt.Sprintf("%s%s", os.Getenv("API_URL"), "/api/post"), "application/json", bytes.NewBuffer(json_data))
 	if err != nil {
 		log.Fatal(err)
 	}
