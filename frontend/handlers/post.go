@@ -4,11 +4,10 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"frontend/config"
 	"frontend/models"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -21,24 +20,28 @@ func ReadPost(c *fiber.Ctx) error {
 
 	postId := c.Params("id")
 
-	resp, err := http.Get(fmt.Sprintf("%s%s%s", os.Getenv("API_URL"), "/api/post/", postId))
-	if err != nil {
-		log.Fatal(err)
+	a := fiber.AcquireAgent()
+	req := a.Request()
+	req.Header.SetMethod(fiber.MethodGet)
+	req.SetRequestURI(fmt.Sprintf("%s%s%s", config.Config("API_URL"), "/api/post/", postId))
+
+	if err := a.Parse(); err != nil {
+		panic(err)
 	}
 
-	defer resp.Body.Close()
-
-	fmt.Println(resp.Body)
+	code, body, errs := a.Bytes()
+	if code != 200 && len(errs) > 0 {
+		return c.Render("post", fiber.Map{
+			"Post": errs,
+		})
+	}
 
 	var res models.PostResponse
-	json.NewDecoder(resp.Body).Decode(&res)
-
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("Error reading response:", err)
+	if err := json.Unmarshal(body, &res); err != nil {
+		return c.Render("post", fiber.Map{
+			"Post": err,
+		})
 	}
-
-	fmt.Println(body)
 
 	return c.Render("post", fiber.Map{
 		"Post": res.Data,
@@ -58,7 +61,7 @@ func CreatePost(c *fiber.Ctx) error {
 		log.Fatal(err)
 	}
 
-	resp, err := http.Post(fmt.Sprintf("%s%s", os.Getenv("API_URL"), "/api/post"), "application/json", bytes.NewBuffer(json_data))
+	resp, err := http.Post(fmt.Sprintf("%s%s", config.Config("API_URL"), "/api/post"), "application/json", bytes.NewBuffer(json_data))
 	if err != nil {
 		log.Fatal(err)
 	}

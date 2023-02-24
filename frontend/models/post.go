@@ -10,6 +10,6 @@ type Post struct {
 }
 
 type PostResponse struct {
-	Data  uint
+	Data  string
 	Error string
 }

@@ -22,7 +22,5 @@ func ReadPost(postId string) (*models.Post, error) {
 		return nil, result.Error
 	}
 
-	fmt.Println(post)
-
 	return post, nil
 }

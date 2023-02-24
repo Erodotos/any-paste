@@ -4,6 +4,7 @@ import (
 	"backend/dal"
 	"backend/models"
 	"fmt"
+	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -19,13 +20,11 @@ func CreatePost(c *fiber.Ctx) error {
 		return c.Status(500).JSON(fiber.Map{"data": nil, "error": err.Error()})
 	}
 
-	return c.Status(201).JSON(fiber.Map{"data": post.ID, "error": nil})
+	return c.Status(201).JSON(fiber.Map{"data": strconv.FormatUint(uint64(post.ID), 10), "error": nil})
 }
 
 func ReadPost(c *fiber.Ctx) error {
 	postId := c.Params("id")
-
-	fmt.Println(postId)
 
 	result, err := dal.ReadPost(postId)
 
@@ -33,8 +32,5 @@ func ReadPost(c *fiber.Ctx) error {
 		return c.Status(404).JSON(fiber.Map{"data": nil, "error": err.Error()})
 	}
 
-	fmt.Println(result.Post)
-	fmt.Printf("%T", result.Post)
-
-	return c.Status(200).JSON("aloou")
+	return c.Status(200).JSON(fiber.Map{"data": result.Post, "error": nil})
 }
