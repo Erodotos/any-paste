@@ -31,9 +31,13 @@ The current installation does not include automation tools such as [`helm`](http
 
 1. Install the mysql instance using the following commands (note that in general it is a bad idea to deploy databases on Kubernetes. Make sure you watch my full video for more details):
 `kubectl apply -f .k8s/database/volume.yaml --namesapce any-paste`
+
 `kubectl apply -f .k8s/database/secret.yaml --namesapce any-paste`
+
 `kubectl apply -f .k8s/database/config-map.yaml --namesapce any-paste`
+
 `kubectl apply -f .k8s/database/deployment.yaml --namesapce any-paste`
+
 `kubectl apply -f .k8s/database/service.yaml --namesapce any-paste`
 
 1. Install the backend of our application using the following commands:
