@@ -32,31 +32,31 @@ The current installation does not include automation tools such as [`helm`](http
 
 3. Install the mysql instance using the following commands (note that in general it is a bad idea to deploy databases on Kubernetes. Make sure you watch my full video for more details):
    
-     `kubectl apply -f .k8s/database/volume.yaml --namesapce any-paste`
+     `kubectl apply -f .k8s/database/volume.yaml --namespace any-paste`
 
-     `kubectl apply -f .k8s/database/secret.yaml --namesapce any-paste`
+     `kubectl apply -f .k8s/database/secret.yaml --namespace any-paste`
 
-     `kubectl apply -f .k8s/database/config-map.yaml --namesapce any-paste`
+     `kubectl apply -f .k8s/database/config-map.yaml --namespace any-paste`
 
-     `kubectl apply -f .k8s/database/deployment.yaml --namesapce any-paste`
+     `kubectl apply -f .k8s/database/deployment.yaml --namespace any-paste`
 
-     `kubectl apply -f .k8s/database/service.yaml --namesapce any-paste`
+     `kubectl apply -f .k8s/database/service.yaml --namespace any-paste`
 
 4. Install the backend of our application using the following commands:
    
-   `kubectl apply -f .k8s/api/deployment.yaml --namesapce any-paste`
+   `kubectl apply -f .k8s/api/deployment.yaml --namespace any-paste`
 
-   `kubectl apply -f .k8s/api/service.yaml --namesapce any-paste`
+   `kubectl apply -f .k8s/api/service.yaml --namespace any-paste`
 
 5. Install the frontend of our application using the following commands:
    
-   `kubectl apply -f .k8s/website/deployment.yaml --namesapce any-paste`
+   `kubectl apply -f .k8s/website/deployment.yaml --namespace any-paste`
    
-   `kubectl apply -f .k8s/website/service.yaml --namesapce any-paste`
+   `kubectl apply -f .k8s/website/service.yaml --namespace any-paste`
 
 6. Finally, we need to deploy an ingress resource to manage the incoming traffic towards the cluster. Note that all deployed services (database, frontend and backend) are all deployed on a private virtual network and are not accessible from the outside world. Hence, we need to deploy ingress, which will route incoming traffic to our application. For this, use the following command (make sure you have enabled the Nginx ingress controller):
    
-   `kubectl apply -f .k8s/ingress.yaml --namesapce any-paste`
+   `kubectl apply -f .k8s/ingress.yaml --namespace any-paste`
 
 
 
