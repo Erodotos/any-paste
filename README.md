@@ -30,7 +30,7 @@ The current installation does not include automation tools such as [`helm`](http
 
    `kubectl create namespace any-paste`
 
-3. Install the mysql instance using the following commands (note that in general it is a bad idea to deploy databases on Kubernetes. Make sure you watch my full video for more details):
+3. Install the **mysql** instance using the following commands (note that in general it is a bad idea to deploy databases on Kubernetes. Make sure you watch my full video for more details):
    
      `kubectl apply -f .k8s/database/volume.yaml --namespace any-paste`
 
@@ -42,19 +42,21 @@ The current installation does not include automation tools such as [`helm`](http
 
      `kubectl apply -f .k8s/database/service.yaml --namespace any-paste`
 
-4. Install the backend of our application using the following commands:
+4. Install the **backend** of our application using the following commands:
    
    `kubectl apply -f .k8s/api/deployment.yaml --namespace any-paste`
 
    `kubectl apply -f .k8s/api/service.yaml --namespace any-paste`
 
-5. Install the frontend of our application using the following commands:
+5. Install the **frontend** of our application using the following commands:
    
    `kubectl apply -f .k8s/website/deployment.yaml --namespace any-paste`
    
    `kubectl apply -f .k8s/website/service.yaml --namespace any-paste`
 
-6. Finally, we need to deploy an ingress resource to manage the incoming traffic towards the cluster. Note that all deployed services (database, frontend and backend) are all deployed on a private virtual network and are not accessible from the outside world. Hence, we need to deploy ingress, which will route incoming traffic to our application. For this, use the following command (make sure you have enabled the Nginx ingress controller):
+6. Enable the **Ingress Contrller** for your cluster. If you are on Docker Desktop you can use `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.0/deploy/static/provider/cloud/deploy.yaml`, while for Minikube you can use `minikube addons enable ingress`. Essentially, an **Ingress Controller** is a loadbalancer which takes as input an Ingress Resource that describes how we want to perform loadbalancing. 
+
+7. Finally, we need to deploy an **Ingress Resource** to describe how we want to manage the incoming traffic. Note that all deployed services (database, frontend and backend) are all deployed on a private virtual network and are not accessible from the outside world. Hence, we need to deploy ingress, which will route incoming traffic to our application. For this, use the following command:
    
    `kubectl apply -f .k8s/ingress.yaml --namespace any-paste`
 
