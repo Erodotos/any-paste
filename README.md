@@ -64,4 +64,4 @@ The current installation does not include automation tools such as [`helm`](http
 
 ## Project architecture explanation and Demo
 
-[![Demo Video](https://imgur.com/a/T38Cvpu)](https://www.youtube.com/watch?v=zcMfjyWxQZ0)
+[![Demo Video](https://i.imgur.com/nAh3eXT.png)](https://www.youtube.com/watch?v=zcMfjyWxQZ0)
